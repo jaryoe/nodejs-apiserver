@@ -53,9 +53,10 @@ module.exports = {
 			connection.query($sql.login, [param.username, param.password], function(err, result) {
                 if(err){
                     console.log(err);
-                }
+				}
 				let val = result[0];
-                let uid = val['uid'];
+				
+                let uid = val ? val['uid'] : '';
 				if(result) {
 					result = {
 						code: 200,

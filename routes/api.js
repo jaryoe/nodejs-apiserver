@@ -18,7 +18,6 @@ router.post('/login', async (req, res, next) => {
   apiDao.login(req, res, next);
 });
 
-
 // 增加用户
 router.post('/user/addUser', function(req, res, next) {
 	apiDao.add(req, res, next);
