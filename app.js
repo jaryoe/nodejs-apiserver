@@ -32,6 +32,7 @@ app.use(async(req, res, next) => {
   let {url = ''} = req;
   if(url.indexOf('/api/user') > -1){//需要校验登录态
       let {token} = req.headers;
+      console.log('token',token)
       if (token) {
           let result = verifyToken(token);
           let {uid} = result;
@@ -88,7 +89,14 @@ app.post('/', function(req, res){
  if (req.body.remember) res.cookie('remember', 1, { maxAge: minute });
   res.redirect('back');
 });*/
-
+/***处理跨域 */
+app.use((req, res, next) => {
+  res.append('Access-Control-Allow-Origin', ['*']);
+  res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.append('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+/**路由 */
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
 
